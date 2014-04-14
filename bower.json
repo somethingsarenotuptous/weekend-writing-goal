@@ -1,0 +1,22 @@
+{
+  "name": "weekend-writing-goal",
+  "version": "0.0.0",
+  "authors": [
+    "Utres Inflati <utres.inflati.ambulamus@gmail.com>"
+  ],
+  "description": "a mini-app for tracking an #antidiogenes weekend writing goal",
+  "main": "app.js",
+  "license": "GPLv3",
+  "homepage": "http://somethingsarenotuptous.tumblr.com/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}

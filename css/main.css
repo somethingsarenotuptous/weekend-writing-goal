@@ -1,0 +1,19 @@
+.navbar-form .help-block {
+  display: inline-block;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.4em;
+}
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small {
+  line-height: 1.4em;
+}
