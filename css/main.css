@@ -1,3 +1,9 @@
+.before #countdown-clock {
+  color: #2f60cc;
+}
+.after #countdown-clock {
+  color: #ff7154;
+}
 .navbar-form .help-block {
   display: inline-block;
 }

@@ -17,10 +17,18 @@ module.exports = Backbone.View.extend({
   },
 
   render: function() {
+    var before = dt.beforeWeekend(this.model);
     this.$el.html(countdown({
-      'verb': dt.beforeWeekend(this.model) ? 'starts' : 'ends',
+      'verb': before ? 'starts' : 'ends',
       'clock': this.model.get('clock')
     }));
+    if (before) {
+      this.$el.toggleClass('before', true);
+    }
+    else {
+      this.$el.toggleClass('after', true);
+    }
+
   },
 
   startCountdown: function(start) {
