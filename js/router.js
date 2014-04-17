@@ -23,12 +23,14 @@ if (window.localStorage.app) {
 }
 else {
   log('Created new app model.');
-  appView = new AppView({model: new AppModel({
-    countdown: new Countdown(),
-    countdownSet: false,
-    goal: new Goal(),
-    goalSet: false
-  })});
+  appView = new AppView({
+    model: new AppModel({
+      countdown: new Countdown(),
+      countdownSet: false,
+      goal: new Goal(),
+      goalSet: false
+    })
+  });
 }
 
 module.exports = Backbone.Router.extend({
