@@ -10,6 +10,16 @@ var goal = require('../templates/goal.hbs');
 
 module.exports = Backbone.View.extend({
   el: $('#app-goal'),
+  
+  initialize: function() {
+    this.listenTo(this.model, 'change', this.render);
+  },
+
+  remove: function() {
+    this.undelegateEvents();
+    this.$el.empty();
+    this.stopListening();
+  },
 
   render: function() {
     var end = this.model.parent.get('countdown').get('end');
@@ -26,7 +36,7 @@ module.exports = Backbone.View.extend({
     }
     else {
       this.$el.html(goal({
-        'words': this.model.get('words')
+        'words': format.words(this.model.get('words'))
       }));
     }
   }

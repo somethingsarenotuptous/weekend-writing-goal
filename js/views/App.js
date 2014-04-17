@@ -45,13 +45,32 @@ module.exports = Backbone.View.extend({
   updateCountdown: function() {
     log('Updated countdown.');
     this.model.save();
-    this.countdownView = new Countdown({model: this.model.countdown});
+    if (this.model.get('countdownSet')) {
+      this.countdownView = new Countdown({model: this.model.countdown});
+      // Countdown doesn't need manually rendered
+      // triggered through initialize
+    }
+    else {
+      this.countdownView.remove();
+      this.countdownView = new SetCountdown({model: this.model.countdown});
+      // SetCountdown needs manually rendered
+      this.countdownView.render();
+    }
   },
 
   updateGoal: function() {
     log('Updated goal.');
-    this.goalView = new Goal({model: this.model.goal});
-    this.goalView.render();
-    this.model.save();
+    if (this.model.get('goalSet')) {
+      this.goalView = new Goal({model: this.model.goal});
+      // countdownView needs rendered as well, because Change Goal button
+      this.render();
+      this.model.save();
+    }
+    else {
+      this.goalView.remove();
+      this.goalView = new SetGoal({model: this.model.goal});
+      // countdownView needs rendered as well, because Change Goal button
+      this.render();
+    }
   }
 });

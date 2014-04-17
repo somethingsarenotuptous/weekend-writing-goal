@@ -1,1 +1,7 @@
-<p class="navbar-right navbar-text" id="countdown">Goal {{verb}} in <span id="countdown-clock">{{clock}}</p>
+<div class="navbar-right">
+    <p class="navbar-text" id="countdown">Goal {{verb}} in <span id="countdown-clock">{{clock}}</span></p>
+    <span id="resetbuttons">
+        <button type="button" class="btn btn-default navbar-btn" id="resetcountdown">Reset</button>
+        {{#if goalSet}}<button type="button" class="btn btn-default navbar-btn" id="changegoal">Change Goal</button>{{/if}}
+    </span>
+</div>

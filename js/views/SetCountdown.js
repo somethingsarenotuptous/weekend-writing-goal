@@ -14,7 +14,14 @@ module.exports = Backbone.View.extend({
   events: {
     'click #setcountdown': 'setCountdown',
     'keypress #countdown-input': 'onEnter',
-    'keyup #countdown-input': 'validateInput'
+    'keyup #countdown-input': 'validateInput',
+    'click #changegoal': 'changeGoal'
+  },
+
+  changeGoal: function() {
+    var goal = this.model.parent.get('goal');
+    goal.unset('words');
+    this.model.parent.set('goalSet', false);
   },
 
   onEnter: function(e) {
@@ -27,7 +34,9 @@ module.exports = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(setcountdown);
+    this.$el.html(setcountdown({
+      'goalSet': this.model.parent.get('goalSet')
+    }));
     this.$form = this.$('#countdown-form');
     this.$input = this.$('#countdown-input');
     this.$button = this.$('#setcountdown');
