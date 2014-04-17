@@ -5,9 +5,9 @@ var validate = require('./validate');
 var dateandtime = {
   formats: validate.expectedFormats,
 
-  beforeWeekend: function(countdown) {
+  beforeWeekend: function(start) {
     var now = moment();
-    return now.isBefore(moment(countdown.get('start')));
+    return now.isBefore(moment(start));
   },
 
   countdownStart: function(s) {
@@ -36,6 +36,16 @@ var dateandtime = {
     var min = Math.floor((m % this.MS_IN_HOUR) / this.MS_IN_MIN);
     var sec = Math.floor(((m % this.MS_IN_HOUR) % this.MS_IN_MIN) / 1000);
     return hrs + ' hrs, ' + min + ' min, and ' + sec + ' sec';
+  },
+
+  weekendBefore: function(start) {
+    var now = moment();
+    return moment(start).isBefore(now);
+  },
+
+  withinTwoDays: function(start) {
+    var now = moment();
+    return now.isBefore(moment(start).add('days', 2));
   },
 
   MS_IN_HOUR: 3600000,

@@ -36,17 +36,36 @@ module.exports = Backbone.View.extend({
   },
 
   render: function() {
-    var before = dt.beforeWeekend(this.model);
-    this.$el.html(countdown({
-      'verb': before ? 'starts' : 'ends',
-      'clock': this.model.get('clock'),
-      'goalSet': this.model.parent.get('goalSet')
-    }));
-    if (before) {
-      this.$el.toggleClass('before', true);
+    var start = this.model.get('start');
+    var beforeWeekend = dt.beforeWeekend(start);
+    var weekendBefore = dt.weekendBefore(start);
+    var withinTwoDays = dt.withinTwoDays(start);
+    var text, tail = '';
+    if (beforeWeekend) {
+      text = 'Goal starts in';
+    }
+    else if (weekendBefore && withinTwoDays) {
+      text = 'Goal ends in';
     }
     else {
-      this.$el.toggleClass('after', true);
+      text = 'Last goal started';
+      tail = 'ago';
+    }
+    this.$el.html(countdown({
+      'text': text,
+      'clock': this.model.get('clock'),
+      'goalSet': this.model.parent.get('goalSet'),
+      'tail': tail
+    }));
+    this.$clock = this.$('#countdownclock');
+    if (beforeWeekend) {
+      this.$clock.toggleClass('text-info', true);
+    }
+    else if (weekendBefore && withinTwoDays) {
+      this.$clock.toggleClass('text-danger', true);
+    }
+    else {
+      this.$clock.toggleClass('text-info', true);
     }
   },
 
