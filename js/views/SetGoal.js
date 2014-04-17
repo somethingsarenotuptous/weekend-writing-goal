@@ -12,8 +12,8 @@ module.exports = Backbone.View.extend({
 
   events: {
     'click #setgoal': 'setGoal',
-    'keypress #goal-input': 'onEnter',
-    'keyup #goal-input': 'validateGoal'
+    'keypress #goalinput': 'onEnter',
+    'keyup #goalinput': 'validateGoal'
   },
 
   onEnter: function(e) {
@@ -27,8 +27,8 @@ module.exports = Backbone.View.extend({
 
   render: function() {
     this.$el.html(setgoal);
-    this.$input = this.$('#goal-input');
-    this.$form = this.$('#goal-form');
+    this.$input = this.$('#goalinput');
+    this.$form = this.$('#goalform');
     this.$button = this.$('#setgoal');
   },
 
