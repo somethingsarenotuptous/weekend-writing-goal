@@ -49,6 +49,7 @@ module.exports = Backbone.View.extend({
       this.countdownView = new Countdown({model: this.model.countdown});
       // Countdown doesn't need manually rendered
       // triggered through initialize
+      this.goalView.render();
     }
     else {
       this.countdownView.remove();
