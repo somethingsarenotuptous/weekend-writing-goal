@@ -1,5 +1,6 @@
 @import '../libs/bootstrap/less/bootstrap.less';
 @import 'colors.less';
+@import url(http://fonts.googleapis.com/css?family=Sancreek);
 
 .navbar-form .help-block {
   display: inline-block;
@@ -18,4 +19,24 @@ h1, h2, h3, h4, h5, h6 {
   #resetbuttons {
     float:right;
   }
+}
+@media (max-width: 320px) {
+  #app-goal {
+    padding-bottom: 20px;
+  }
+  #app-wars-outer {
+    padding: 10px;
+  }
+  .well {
+    margin: 0px;
+  }
+}
+
+h1#write-or-die {
+  text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
+  color: @jumbotron-bg;
+  opacity: 0.25;
+  font-size: 10vw;
+  font-family: 'Sancreek', cursive;
+  text-align: center;
 }

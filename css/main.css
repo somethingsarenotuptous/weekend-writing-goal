@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Sancreek);
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -5795,4 +5796,23 @@ h6 small {
   #resetbuttons {
     float: right;
   }
+}
+@media (max-width: 320px) {
+  #app-goal {
+    padding-bottom: 20px;
+  }
+  #app-wars-outer {
+    padding: 10px;
+  }
+  .well {
+    margin: 0px;
+  }
+}
+h1#write-or-die {
+  text-shadow: -1px -1px 1px #ffffff, 1px 1px 1px #000000;
+  color: #f8f8f8;
+  opacity: 0.25;
+  font-size: 10vw;
+  font-family: 'Sancreek', cursive;
+  text-align: center;
 }

@@ -7,7 +7,8 @@ var log = require('bows')('AppView');
 var Countdown = require('./Countdown'),
   SetCountdown = require('./SetCountdown'),
   Goal = require('./Goal'),
-  SetGoal = require('./SetGoal');
+  SetGoal = require('./SetGoal'),
+  AddWar = require('./AddWar');
 
 module.exports = Backbone.View.extend({
   el: $('#app'),
@@ -34,12 +35,25 @@ module.exports = Backbone.View.extend({
       this.goalView = new SetGoal({model: this.model.goal});
     }
     this.listenTo(this.model, 'change:goalSet', this.updateGoal);
+    this.setState();
   },
 
   render: function() {
     log('Rendered AppView.');
     this.countdownView.render();
     this.goalView.render();
+  },
+
+  setState: function() {
+    if (this.model.get('goalSet') && this.model.get('countdownSet')) {
+      this.addWarView = new AddWar();
+      $('#write-or-die').hide();
+      this.addWarView.render();
+    }
+    else if (this.addWarView) {
+      this.addWarView.remove();
+      $('#write-or-die').show();
+    }
   },
 
   updateCountdown: function() {
@@ -57,6 +71,7 @@ module.exports = Backbone.View.extend({
       // SetCountdown needs manually rendered
       this.countdownView.render();
     }
+    this.setState();
   },
 
   updateGoal: function() {
@@ -74,5 +89,6 @@ module.exports = Backbone.View.extend({
       // countdownView needs rendered as well, because Change Goal button
       this.render();
     }
+    this.setState();
   }
 });
