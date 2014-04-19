@@ -84,7 +84,7 @@ module.exports = Backbone.View.extend({
 
   updateClock: function() {
     this.model.set({
-      'clock': dt.millisecondsToClock(dt.getMillisecondsDiff(this.model.get('start')))
+      'clock': dt.millisecondsToClock(dt.getMillisecondsDiff(this.model.get('start'), this.model.get('end')))
     });
   }
 });

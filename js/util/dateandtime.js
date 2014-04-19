@@ -18,9 +18,12 @@ var dateandtime = {
     return moment(s, this.formats, true).add('days', 2).toISOString();
   },
 
-  getMillisecondsDiff: function(ISODateString) {
+  getMillisecondsDiff: function(start, end) {
     var now = moment();
-    return Math.abs(now.diff(ISODateString));
+    if (moment(start).isBefore(now)) {
+      return Math.abs(now.diff(end));
+    }
+    return Math.abs(now.diff(start));
   },
 
   goalEndTime: function(ISODateString) {
