@@ -1,5 +1,6 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
+var _ = require('lodash', {expose: 'underscore'});
 Backbone.$ = $;
 
 var RecordView = require('./Record');
@@ -7,7 +8,7 @@ var RecordView = require('./Record');
 var log = require('bows')('RecordsView');
 
 module.exports = Backbone.View.extend({
-  allAll: function() {
+  addAll: function() {
     this.collection.each(this.addRecord);
   },
 
@@ -19,6 +20,10 @@ module.exports = Backbone.View.extend({
     }
     this.incrementCount();
   },
+  
+  decrementCount: function() {
+    this.count -=1;
+  },
 
   incrementCount: function() {
     this.count +=1;
@@ -29,7 +34,7 @@ module.exports = Backbone.View.extend({
   initialize: function() {
     log('Initalized RecordsView.');
     this.listenTo(this.collection, 'add', this.addRecord);
-    this.listenTo(this.collection, 'reset', this.addAll);
+    this.listenTo(this.collection, 'remove', this.toggleColOffset);
 
     this.count = 0;
     
@@ -38,5 +43,17 @@ module.exports = Backbone.View.extend({
 
   render: function() {
     this.$el.html();
+  },
+
+  toggleColOffset: function() {
+    _.each(this.$el.children(), function(child, i) {
+      if (i % 2 === 0) {
+        $(child).toggleClass('col-md-offset-3', true);
+      }
+      else {
+        $(child).toggleClass('col-md-offset-3', false);
+      }
+    });
+    this.decrementCount();
   }
 });

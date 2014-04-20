@@ -12,14 +12,15 @@ var addwords = require('../templates/addwords.hbs');
 
 module.exports = Backbone.View.extend({
   saveWords: function(e) {
-    log('Saved new word count.');
     var type = this.model.get('wordsType');
     var input = this.$('#' + type + 'wordsinput').val();
-    this.collection.add(new WordCount({
+    var count = new WordCount({
       'type': type,
       'words': parseInt(input, 10),
       'timestamp': format.nowString()
-    }));
+    });
+    this.collection.add(count);
+    log('Saved new word count.', JSON.stringify(count));
     this.render();
   },
 
