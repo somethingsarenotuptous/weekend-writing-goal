@@ -44,11 +44,12 @@ else {
 
 module.exports = Backbone.Router.extend({
   routes: {
-    '*home': 'home'
+    '': 'home'
   },
 
   home: function () {
     log('Home.');
+    this.navigate('#home');
     appView.modalView = modalView;
     appView.render();
   }
