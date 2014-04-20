@@ -1,9 +1,9 @@
 var Backbone = require('backbone');
 
-var log = require('bows')('WordCountModel');
+var log = require('bows')('AddWordsModel');
 
 module.exports = Backbone.Model.extend({
   defaults: {
-    'words': 0
+    'addType': null
   }
 });

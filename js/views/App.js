@@ -13,6 +13,10 @@ var Countdown = require('./Countdown'),
 module.exports = Backbone.View.extend({
   el: $('#app'),
 
+  events: {
+    'click .add-words': 'updateWordsType'
+  },
+
   initialize: function() {
     log('Initialized AppView.');
     // store the app model in localStorage
@@ -90,5 +94,9 @@ module.exports = Backbone.View.extend({
       this.render();
     }
     this.setState();
+  },
+
+  updateWordsType: function(e) {
+    this.modalView.model.set('addType', e.toElement.value);
   }
 });
