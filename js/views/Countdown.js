@@ -48,7 +48,7 @@ module.exports = Backbone.View.extend({
       text = 'Goal ends in';
     }
     else {
-      text = 'Last goal started';
+      text = 'Last goal ended';
       tail = 'ago';
     }
     this.$el.html(countdown({
