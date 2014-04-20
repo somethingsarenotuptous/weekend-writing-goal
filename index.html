@@ -12,29 +12,6 @@
       <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
     <body>
-      <div class="modal fade" id="app-modal" tabindex="-1" role="dialog" aria-labelledby="modallabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="modallabel">Add Words</h4>
-            </div>
-            <div class="modal-body">
-              <form class="form-horizontal has-error" role="form" id="wordsform">
-                <div class="form-group">
-                    <label class="sr-only" for="#wordsinput">Number of words</label>
-                    <div class="col-md-6 col-md-offset-3">
-                      <input type="text" class="form-control" placeholder="Number of words" id="wordsinput">
-                    </div>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" id="modalsave" data-dismiss="modal" disabled>Save</button>
-            </div>
-          </div>
-        </div>
-      </div>
       <div id="app">
         <nav class="navbar navbar-default" role="navigation">
           <div class="container-fluid">
@@ -48,22 +25,24 @@
               </button>
               <a class="navbar-brand" href="http://antidiogenes.tumblr.com/" target="_blank">#antidiogenes</a>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse">
               <div id="app-countdown"></div>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-        <div class="jumbotron">
+        <div class="jumbotron" id="jumbo1">
           <div class="container-fluid">
             <div class="row" id="app-goal"></div>
           </div><!-- /.container-fluid -->
         </div>
-        <div class="jumbotron" id="app-wars-outer">
+        <div class="jumbotron"  id="jumbo2">
           <h1 id="write-or-die">Write Write Write</h1>
-          <div class="container-fluid">
-            <div class="row" id="app-wars"></div>
+          <div class="container-fluid" id="app-addwords-outer">
+          </div><!-- /.container-fluid -->
+        </div>
+        <div class="jumbotron" id="jumbo3">
+          <div class="container-fluid" id="app-records">
           </div><!-- /.container-fluid -->
         </div>
       </div>

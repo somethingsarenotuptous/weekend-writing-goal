@@ -2,8 +2,8 @@
     <div class="form-group">
         <label class="sr-only" for="#countdowninput">Start of #antidiogenes weekend</label>
         <span class="help-block">When does the #antidiogenes weekend start?</span>
-        <input type="text" class="form-control" placeholder="month-day hour am|pm" id="countdowninput">
+        <input type="text" class="form-control" placeholder="month-day hour am|pm" id="countdowninput" autofocus>
     </div>
-    <input type="button" class="btn btn-default" id="setcountdown" value="Set Countdown Clock" disabled>
+    <button type="button" class="btn btn-default" id="setcountdown" disabled>Set Countdown Clock</button>
     {{#if goalSet}}<button type="button" class="btn btn-default navbar-btn" id="changegoal">Change Goal</button>{{/if}}
 </form>

@@ -1,5 +1,4 @@
 var $ = require('jquery');
-var _ = require('lodash', {expose: 'underscore'});
 var Backbone = require('backbone');
 Backbone.$ = $;
 
@@ -24,7 +23,9 @@ module.exports = Backbone.View.extend({
 
   initialize: function() {
     // unset the clock to start because we don't want to render the stale clock string
-    this.model.unset('clock');
+    this.model.set({
+      'clock': dt.millisecondsToClock(dt.getMillisecondsDiff(this.model.get('start'), this.model.get('end')))
+    });
     this.listenTo(this.model, 'change:clock', this.render);
     this.startCountdown(this.model.get('start'));
   },

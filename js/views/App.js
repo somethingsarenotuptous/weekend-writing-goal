@@ -8,14 +8,10 @@ var Countdown = require('./Countdown'),
   SetCountdown = require('./SetCountdown'),
   Goal = require('./Goal'),
   SetGoal = require('./SetGoal'),
-  AddWar = require('./AddWar');
+  AddWords = require('./AddWords');
 
 module.exports = Backbone.View.extend({
   el: $('#app'),
-
-  events: {
-    'click .add-words': 'updateWordsType'
-  },
 
   initialize: function() {
     log('Initialized AppView.');
@@ -39,6 +35,7 @@ module.exports = Backbone.View.extend({
       this.goalView = new SetGoal({model: this.model.goal});
     }
     this.listenTo(this.model, 'change:goalSet', this.updateGoal);
+    this.render();
     this.setState();
   },
 
@@ -48,14 +45,23 @@ module.exports = Backbone.View.extend({
     this.goalView.render();
   },
 
+  resetWordCounts: function() {
+    this.collection.clear();
+  },
+
   setState: function() {
     if (this.model.get('goalSet') && this.model.get('countdownSet')) {
-      this.addWarView = new AddWar();
+      var AddWordsModel = Backbone.Model.extend({});
+      this.addWordsView = new AddWords({
+        model: new AddWordsModel(),
+        collection: this.collection
+      });
       $('#write-or-die').hide();
-      this.addWarView.render();
+      this.$('#app-addwords-outer').append(this.addWordsView.$el);
+      this.$('#warwordsinput').focus();
     }
-    else if (this.addWarView) {
-      this.addWarView.remove();
+    else if (this.addWordsView) {
+      this.addWordsView.remove();
       $('#write-or-die').show();
     }
   },
@@ -68,8 +74,12 @@ module.exports = Backbone.View.extend({
       // Countdown doesn't need manually rendered
       // triggered through initialize
       this.goalView.render();
+      if (!this.model.get('goalSet')) {
+        this.$('#goalinput').focus();
+      }
     }
     else {
+      this.resetWordCounts();
       this.countdownView.remove();
       this.countdownView = new SetCountdown({model: this.model.countdown});
       // SetCountdown needs manually rendered
@@ -94,9 +104,5 @@ module.exports = Backbone.View.extend({
       this.render();
     }
     this.setState();
-  },
-
-  updateWordsType: function(e) {
-    this.modalView.model.set('addType', e.toElement.value);
   }
 });

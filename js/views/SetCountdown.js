@@ -40,6 +40,7 @@ module.exports = Backbone.View.extend({
     this.$form = this.$('#countdownform');
     this.$input = this.$('#countdowninput');
     this.$button = this.$('#setcountdown');
+    this.$input.focus();
   },
 
   setCountdown: function() {
