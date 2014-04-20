@@ -4,16 +4,18 @@ Backbone.$ = $;
 
 var log = require('bows')('Router');
 
-var AppView = require('./views/App'),
-  WordCounts = require('./collections/WordCounts'),
+var WordCounts = require('./collections/WordCounts'),
   AddWords = require('./views/AddWords'),
   AddWordsModel = require('./models/AddWords'),
+  AppView = require('./views/App'),
   AppModel = require('./models/App'),
+  WarsView = require('./views/Wars'),
   appView, wordCounts, modalView;
 
 var Countdown = Backbone.Model.extend({}), Goal = Backbone.Model.extend({});
 
 wordCounts = new WordCounts();
+wordCounts.fetch();
 modalView = new AddWords({
   collection: wordCounts,
   model: new AddWordsModel()
@@ -39,6 +41,12 @@ else {
       goal: new Goal(),
       goalSet: false
     })
+  });
+}
+if (window.localStorage.wordWars) {
+  log('Retrieved word counts collection from localStorage.');
+  warsView = new WarsView({
+    collection: wordCounts
   });
 }
 
