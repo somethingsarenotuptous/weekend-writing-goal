@@ -95,7 +95,6 @@ module.exports = Backbone.View.extend({
       this.goalView = new Goal({model: this.model.goal});
       // countdownView needs rendered as well, because Change Goal button
       this.render();
-      this.model.save();
     }
     else {
       this.goalView.remove();

@@ -26,6 +26,7 @@ module.exports = Backbone.View.extend({
   },
 
   render: function() {
+    log('Rendered SetGoal.');
     this.$el.html(setgoal);
     this.$input = this.$('#goalinput');
     this.$form = this.$('#goalform');

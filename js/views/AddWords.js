@@ -35,6 +35,7 @@ module.exports = Backbone.View.extend({
   },
 
   initialize: function() {
+    log('Initialized AddWordsView.');
     this.render();
   },
 

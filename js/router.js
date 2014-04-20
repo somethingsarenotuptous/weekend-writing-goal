@@ -6,6 +6,7 @@ var WordCounts = require('./collections/WordCounts'),
   AppView = require('./views/App'),
   AppModel = require('./models/App'),
   RecordsView = require('./views/Records'),
+  ProgressView = require('./views/Progress'),
   appView, wordCounts, recordsView;
 
 var Countdown = Backbone.Model.extend({}), Goal = Backbone.Model.extend({});
@@ -50,6 +51,9 @@ module.exports = Backbone.Router.extend({
       });
     }
     recordsView = new RecordsView({
+      collection: wordCounts
+    });
+    progressView = new ProgressView({
       collection: wordCounts
     });
   }

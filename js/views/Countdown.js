@@ -22,6 +22,7 @@ module.exports = Backbone.View.extend({
   },
 
   initialize: function() {
+    log('Initialized CountdownView.');
     // unset the clock to start because we don't want to render the stale clock string
     this.model.set({
       'clock': dt.millisecondsToClock(dt.getMillisecondsDiff(this.model.get('start'), this.model.get('end')))

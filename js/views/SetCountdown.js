@@ -34,6 +34,7 @@ module.exports = Backbone.View.extend({
   },
 
   render: function() {
+    log('Rendered SetCountdown.');
     this.$el.html(setcountdown({
       'goalSet': this.model.parent.get('goalSet')
     }));

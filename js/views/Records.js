@@ -8,10 +8,6 @@ var RecordView = require('./Record');
 var log = require('bows')('RecordsView');
 
 module.exports = Backbone.View.extend({
-  addAll: function() {
-    this.collection.each(this.addRecord);
-  },
-
   addRecord: function(record) {
     var view = new RecordView({model: record});
     this.$el.append(view.render().el);
@@ -33,15 +29,14 @@ module.exports = Backbone.View.extend({
 
   initialize: function() {
     log('Initalized RecordsView.');
+    this.count = 0;
     this.listenTo(this.collection, 'add', this.addRecord);
     this.listenTo(this.collection, 'remove', this.toggleColOffset);
-
-    this.count = 0;
-    
-    this.collection.fetch();
+    this.collection.fetch({error: function() { log(arguments); }});
   },
 
   render: function() {
+    log('Rendered RecordsView.');
     this.$el.html();
   },
 
