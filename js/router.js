@@ -5,10 +5,15 @@ Backbone.$ = $;
 var log = require('bows')('Router');
 
 var AppView = require('./views/App'),
+  WordCounts = require('./collections/WordCounts'),
+  AddWords = require('./views/AddWords'),
   AppModel = require('./models/App'),
-  appView;
+  appView, wordCounts, modalView;
 
 var Countdown = Backbone.Model.extend({}), Goal = Backbone.Model.extend({});
+
+wordCounts = new WordCounts();
+modalView = new AddWords({collection: wordCounts});
 
 if (window.localStorage.app) {
   log('Retrived app model from localStorage.');
