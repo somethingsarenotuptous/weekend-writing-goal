@@ -2,6 +2,12 @@
 @import 'colors.less';
 @import url(http://fonts.googleapis.com/css?family=Sancreek);
 
+// Bootstrap overrids
+@jumbotron-padding: 10px;
+.well {
+  margin-bottom: 0px;
+}
+
 .navbar-form .help-block {
   display: inline-block;
 }
@@ -61,6 +67,9 @@ h1, h2, h3, h4, h5, h6 {
   #app-goal {
     padding-bottom: 20px;
     h1, h2 {
+      small.pull-right {
+        float: none !important;
+      }
       text-align: center;
     }
   }

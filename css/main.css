@@ -4356,8 +4356,8 @@ a.list-group-item.active > .badge,
   margin-left: 3px;
 }
 .jumbotron {
-  padding: 30px;
-  margin-bottom: 30px;
+  padding: 10px;
+  margin-bottom: 10px;
   color: inherit;
   background-color: #fdfaf7;
 }
@@ -4366,7 +4366,7 @@ a.list-group-item.active > .badge,
   color: inherit;
 }
 .jumbotron p {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   font-size: 21px;
   font-weight: 200;
 }
@@ -4378,12 +4378,12 @@ a.list-group-item.active > .badge,
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
   .container .jumbotron {
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .jumbotron h1,
   .jumbotron .h1 {
@@ -5773,6 +5773,9 @@ button.close {
     display: none !important;
   }
 }
+.well {
+  margin-bottom: 0px;
+}
 .navbar-form .help-block {
   display: inline-block;
 }
@@ -5834,6 +5837,10 @@ h6 small {
   #app-goal h1,
   #app-goal h2 {
     text-align: center;
+  }
+  #app-goal h1 small.pull-right,
+  #app-goal h2 small.pull-right {
+    float: none !important;
   }
   #app-wars-outer {
     padding: 10px;
