@@ -106,7 +106,7 @@ module.exports = Backbone.View.extend({
       .domain(this.collection.pluck('id'))
       .range(colorbrewer.Paired[9]);
 
-    var data = this.stack(this.reshape());
+    var data = this.stack(this.reshape()).reverse();
 
     var rectGroups = this.svg.selectAll('g')
       .data(data)
