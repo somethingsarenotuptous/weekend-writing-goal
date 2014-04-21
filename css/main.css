@@ -5797,6 +5797,15 @@ h6#timestamp {
   font-weight: 300;
   font-style: italic;
 }
+svg {
+  padding: 15px;
+  display: block;
+  margin: 0 auto;
+}
+.d3-rect-words {
+  stroke-width: 1.5;
+  stroke: #F8F8F8;
+}
 h1,
 h2,
 h3,

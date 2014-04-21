@@ -20,6 +20,10 @@ module.exports = Backbone.Collection.extend({
     });
   },
 
+  cumSum: function() {
+    return this.pluck('words').reduce(function(num, sum) { return num + sum; });
+  },
+
   initialize: function() {
     this.on('add', function(model) {
       model.save();
