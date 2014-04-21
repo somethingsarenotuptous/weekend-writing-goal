@@ -5788,6 +5788,9 @@ button.close {
   color: #fdfaf7;
   opacity: 0.75;
 }
+#app-goal h1 {
+  margin-top: 10px;
+}
 h1#write-or-die {
   text-shadow: -1px -1px 1px #ffffff, 1px 1px 1px #000000;
   color: #fdfaf7;
