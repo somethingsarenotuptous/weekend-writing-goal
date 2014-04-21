@@ -9,6 +9,8 @@ module.exports = Backbone.Model.extend({
     this.countdown.parent = this;
     this.goal = this.get('goal');
     this.goal.parent = this;
+    this.windowModel = this.get('windowModel');
+    this.windowModel.parent = this;
     log(JSON.stringify(this));
   },
 

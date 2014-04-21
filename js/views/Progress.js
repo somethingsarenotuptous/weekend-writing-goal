@@ -20,6 +20,8 @@ module.exports = Backbone.View.extend({
 
   initialize: function() {
     log('Initialized ProgressView.');
+    this.windowModel = this.model.get('windowModel');
+    this.listenTo(this.windowModel, 'change:width', this.updateGraph);
     this.listenTo(this.collection, 'add', this.updateGraph);
     this.listenTo(this.collection, 'remove', this.updateGraph);
     this.listenTo(this.model, 'change:goalSet', this.updateOnGoalSet);
