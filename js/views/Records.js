@@ -9,30 +9,30 @@ var log = require('bows')('RecordsView');
 
 module.exports = Backbone.View.extend({
   addRecord: function(record) {
+    this.toggleColOffset();
     var view = new RecordView({model: record});
-    this.$el.append(view.render().el);
-    if (this.count % 2 === 0) {
-      view.$el.toggleClass('col-md-offset-3');
-    }
-    this.incrementCount();
-  },
-  
-  decrementCount: function() {
-    this.count -=1;
-  },
-
-  incrementCount: function() {
-    this.count +=1;
+    this.$el.prepend(view.render().el);
+    view.$el.toggleClass('col-md-offset-3', true);
   },
 
   el: $('#app-records'),
 
   initialize: function() {
     log('Initalized RecordsView.');
-    this.count = 0;
     this.listenTo(this.collection, 'add', this.addRecord);
-    this.listenTo(this.collection, 'remove', this.toggleColOffset);
+    this.listenTo(this.collection, 'remove', this.newOffsets);
     this.collection.fetch({error: function() { log(arguments); }});
+  },
+
+  newOffsets: function() {
+    _.each(this.$el.children(), function(child, i) {
+      if (i % 2 !== 0) {
+        $(child).toggleClass('col-md-offset-3', false);
+      }
+      else {
+        $(child).toggleClass('col-md-offset-3', true);
+      }
+    });
   },
 
   render: function() {
@@ -41,14 +41,8 @@ module.exports = Backbone.View.extend({
   },
 
   toggleColOffset: function() {
-    _.each(this.$el.children(), function(child, i) {
-      if (i % 2 === 0) {
-        $(child).toggleClass('col-md-offset-3', true);
-      }
-      else {
-        $(child).toggleClass('col-md-offset-3', false);
-      }
+    _.each(this.$el.children(), function(child) {
+      $(child).toggleClass('col-md-offset-3');
     });
-    this.decrementCount();
   }
 });
