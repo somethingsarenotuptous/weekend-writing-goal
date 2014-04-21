@@ -5831,6 +5831,10 @@ h6 small {
   #app-goal {
     padding-bottom: 20px;
   }
+  #app-goal h1,
+  #app-goal h2 {
+    text-align: center;
+  }
   #app-wars-outer {
     padding: 10px;
   }
