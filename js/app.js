@@ -10,6 +10,9 @@ var router = new Router();
 
 log('Started app.');
 
+var attachFastClick = require('fastclick');
+attachFastClick(document.body);
+
 $('body').on('click', '.back-button', function(event) {
     event.preventDefault();
     window.history.back();
