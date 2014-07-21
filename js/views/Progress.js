@@ -85,7 +85,10 @@ module.exports = Backbone.View.extend({
     }
     this.svg.selectAll('.d3-rect-group').remove();
 
-    if (!this.collection.size()) {
+    var goalSet = this.model.get('goalSet');
+    // if no word counts record *or* no word count goal set
+    // don't render the graph
+    if (!this.collection.size() || !goalSet) {
       this.$container.toggleClass('hidden', true);
       return;
     }
