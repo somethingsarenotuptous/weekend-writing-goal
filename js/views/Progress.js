@@ -115,7 +115,7 @@ module.exports = Backbone.View.extend({
 
     var colors = d3.scale.ordinal()
       .domain(this.collection.pluck('id'))
-      .range(colorbrewer.Paired[9]);
+      .range(colorbrewer.Paired[10]);
 
     var data = this.stack(this.reshape()).reverse();
 
