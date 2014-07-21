@@ -5779,6 +5779,11 @@ button.close {
 .navbar-form .help-block {
   display: inline-block;
 }
+@media (min-width: 768px) {
+  #navbar-collapse {
+    padding-right: 0px;
+  }
+}
 .words-record {
   font-family: 'Sancreek', cursive;
   letter-spacing: 2px;
@@ -5847,6 +5852,12 @@ h6 small {
   }
   #app-goal h1 small.pull-right,
   #app-goal h2 small.pull-right {
+    float: none !important;
+  }
+  #progressreport {
+    margin: 0 auto;
+  }
+  #progressreport h3.pull-right {
     float: none !important;
   }
   #app-wars-outer {
