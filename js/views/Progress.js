@@ -2,12 +2,13 @@ var $ = require('jquery');
 var Backbone = require('backbone');
 var _ = require('lodash', {expose: 'underscore'});
 Backbone.$ = $;
-// var colorbrewer = window.colorbrewer;
 var d3 = require('d3');
 
 var log = require('bows')('ProgressView');
 
+var format = require('../util/format');
 var progress = require('../templates/progress.hbs');
+var report = require('../templates/report.hbs');
 
 module.exports = Backbone.View.extend({
   el: $('#app-goal'),
@@ -22,8 +23,8 @@ module.exports = Backbone.View.extend({
     log('Initialized ProgressView.');
     this.windowModel = this.model.get('windowModel');
     this.listenTo(this.windowModel, 'change:width', this.updateGraph);
-    this.listenTo(this.collection, 'add', this.updateGraph);
-    this.listenTo(this.collection, 'remove', this.updateGraph);
+    this.listenTo(this.collection, 'add', this.update);
+    this.listenTo(this.collection, 'remove', this.update);
     this.listenTo(this.model, 'change:goalSet', this.updateOnGoalSet);
     this.render();
   },
@@ -40,8 +41,9 @@ module.exports = Backbone.View.extend({
     log('Rendered ProgressView.');
     this.$el.append(progress());
     this.$container = this.$('#graphcontainer');
+    this.$report = this.$('#progressreport');
     this.svg = d3.select('#graphcontainer')
-      .append('svg')
+      .insert('svg', '#progressreport')
       .attr({
         'x': 0,
         'y': 0,
@@ -59,6 +61,7 @@ module.exports = Backbone.View.extend({
       });
     if (this.collection.size() > 0) {
       this.updateGraph();
+      this.updateReport();
     }
     return this;
   },
@@ -76,6 +79,11 @@ module.exports = Backbone.View.extend({
 
   stack: function(data) {
     return d3.layout.stack()(data);
+  },
+
+  update: function() {
+    this.updateGraph();
+    this.updateReport();
   },
 
   updateGraph: function() {
@@ -133,6 +141,7 @@ module.exports = Backbone.View.extend({
         'class': 'd3-rect-words'
       });
   },
+
   updateOnGoalSet: function() {
     if (this.model.get('goalSet')) {
       this.render().updateGraph();
@@ -140,5 +149,12 @@ module.exports = Backbone.View.extend({
     else {
       this.$container.toggleClass('hidden', true);
     }
+  },
+
+  updateReport: function() {
+    var currentSum = this.collection.cumSum();
+    var currentPercent = format.percent(currentSum / this.model.get('goal').get('words'));
+    currentPercent = currentPercent.replace('.0%', '%');
+    this.$report.html(report({'sum': currentSum, 'percent': currentPercent}));
   }
 });

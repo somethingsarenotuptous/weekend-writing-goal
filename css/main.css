@@ -5803,6 +5803,10 @@ h6#timestamp {
   font-weight: 300;
   font-style: italic;
 }
+#progressreport h3 {
+  display: inline-block;
+  font-weight: 400;
+}
 svg {
   padding: 0px;
   display: block;

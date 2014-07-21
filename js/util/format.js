@@ -8,6 +8,10 @@ var format = {
 
   nowString: function() {
     return moment().format('ddd, MMM Do (YYYY), h:mm a');
+  },
+
+  percent: function(n) {
+    return d3.format('.1%')(n);
   }
 };
 
